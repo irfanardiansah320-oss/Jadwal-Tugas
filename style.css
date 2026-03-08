@@ -20,20 +20,14 @@ body {
     border-radius: 20px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     padding: 30px;
     animation: slideIn 0.5s ease-out;
 }
 
 @keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 h1 {
@@ -49,10 +43,12 @@ h1 {
     display: flex;
     gap: 10px;
     margin-bottom: 30px;
+    flex-wrap: wrap;
 }
 
 #newTaskInput {
-    flex: 1;
+    flex: 2;
+    min-width: 200px;
     padding: 12px 15px;
     border: 2px solid #e0e0e0;
     border-radius: 10px;
@@ -61,7 +57,20 @@ h1 {
     outline: none;
 }
 
-#newTaskInput:focus {
+#taskDate {
+    flex: 1;
+    min-width: 140px;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    outline: none;
+    color: #333;
+}
+
+#newTaskInput:focus,
+#taskDate:focus {
     border-color: #667eea;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
@@ -87,11 +96,29 @@ h1 {
     box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
 
-#tasksList {
+/* Grup Tanggal */
+.date-group {
+    margin-bottom: 25px;
+    animation: fadeIn 0.4s ease;
+}
+
+.date-header {
+    background: linear-gradient(135deg, #f6f9fc 0%, #e6f0f5 100%);
+    padding: 10px 15px;
+    border-radius: 30px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: #2d3748;
+    display: inline-block;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border-left: 5px solid #667eea;
+}
+
+.tasks-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 .task-item {
@@ -113,14 +140,8 @@ h1 {
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 .task-item.completed .task-text {
@@ -162,63 +183,28 @@ h1 {
     justify-content: center;
 }
 
-.task-edit-btn {
-    color: #4a5568;
-}
+.task-edit-btn { color: #4a5568; }
+.task-edit-btn:hover { background: #edf2f7; color: #2d3748; }
 
-.task-edit-btn:hover {
-    background: #edf2f7;
-    color: #2d3748;
-}
+.task-color-btn { color: #667eea; }
+.task-color-btn:hover { background: #e6e9ff; }
 
-.task-color-btn {
-    color: #667eea;
-}
+.task-delete-btn { color: #f56565; }
+.task-delete-btn:hover { background: #fed7d7; color: #c53030; }
 
-.task-color-btn:hover {
-    background: #e6e9ff;
-}
-
-.task-delete-btn {
-    color: #f56565;
-}
-
-.task-delete-btn:hover {
-    background: #fed7d7;
-    color: #c53030;
-}
-
-.color-picker {
-    display: none;
-}
+.color-picker { display: none; }
 
 .task-item.removing {
     animation: slideOut 0.3s ease forwards;
 }
 
 @keyframes slideOut {
-    to {
-        opacity: 0;
-        transform: translateX(100%);
-    }
+    to { opacity: 0; transform: translateX(100%); }
 }
 
-@media (max-width: 500px) {
-    .container {
-        padding: 20px;
-    }
-    
-    .input-area {
-        flex-direction: column;
-    }
-    
-    .task-item {
-        flex-wrap: wrap;
-    }
-    
-    .task-text {
-        width: 100%;
-        order: -1;
-        margin-bottom: 10px;
-    }
+@media (max-width: 600px) {
+    .container { padding: 20px; }
+    .input-area { flex-direction: column; }
+    .task-item { flex-wrap: wrap; }
+    .task-text { width: 100%; order: -1; margin-bottom: 10px; }
 }
